@@ -1,5 +1,6 @@
 import system.AnsiColor;
 public class Player{
+    public String test;
     public String playerName;
     //Lebenspunkte
     public int playerMaxHP = 10;

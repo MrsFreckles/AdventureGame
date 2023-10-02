@@ -69,6 +69,12 @@ public class Main {
             Item trashedItem = null;
             trashedItem = myPlayer.takeItem(pChoice);
             trashedItem = null;
+        } else if(choice.equalsIgnoreCase("/sell")) {
+            System.out.println();
+            System.out.println(AnsiColor.ANSI_RED + "Which item would you like to sell?" + AnsiColor.ANSI_RESET);
+            System.out.print("> ");
+            choice = scan.nextLine();
+            myPlayer.sellItem(choice);
         }
     }
 
@@ -162,9 +168,10 @@ public class Main {
                     System.out.println();
                     myPlayer.showInventory();
                     System.out.println();
-                    System.out.println("To equip an item, type 'equip'");
-                    System.out.println("To delete an item, type 'trash'");
-                    System.out.println("To exit out of the Inventory, type 'close'");
+                    System.out.println("To equip an item, type" + AnsiColor.ANSI_BLUE + "equip" + AnsiColor.ANSI_RESET);
+                    System.out.println("To sell an item, type" + AnsiColor.ANSI_BLUE + "sell" + AnsiColor.ANSI_RESET);
+                    System.out.println("To delete an item, type" + AnsiColor.ANSI_BLUE + "trash" + AnsiColor.ANSI_RESET);
+                    System.out.println("To exit out of the Inventory, type" + AnsiColor.ANSI_BLUE + "close" + AnsiColor.ANSI_RESET);
                     System.out.print("> ");
 
                     choice = scan.nextLine();
@@ -195,6 +202,14 @@ public class Main {
                         Item trashedItem = null;
                         trashedItem = myPlayer.takeItem(choice);
                         trashedItem = null;
+                    } else if(choice.equalsIgnoreCase("sell")){System.out.println();
+                        //System.out.println("Which item would you like to sell?");
+                        //System.out.print("> ");
+                        //choice = scan.nextLine();
+                        //if(choice.startsWith("/")){
+                        //    AdminCommands(choice);
+                        //}
+                        //myPlayer.sellItem(choice);
                     } else if (choice.equalsIgnoreCase("close")) {
                         inventoryOpen = false;
                     } else {

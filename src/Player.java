@@ -25,7 +25,6 @@ public class Player{
     Item myItemSlot;
     //Inventory
     private Item[][] inventory = new Item[3][9];
-    private Item[] equippedItems = new Item[6];
     private Main myMenu = new Main();
     public Item tempItem = null;
     public Player(){
@@ -47,6 +46,7 @@ public class Player{
             System.out.print(AnsiColor.ANSI_BLACK + "❤ " +AnsiColor.ANSI_RESET);
         }
         System.out.print("("+playerCurrentHP+"/"+playerMaxHP+")");
+        System.out.println();
     }
     public void showArmor(){
         int temp = playerArmor;
@@ -167,7 +167,6 @@ public class Player{
     }
     public void printStatus(){
         showHP();
-        System.out.println();
         showExperience();
         showArmor();
         showGold();
@@ -175,56 +174,28 @@ public class Player{
         System.out.println("Max DMG:" + maxDMG);
         System.out.println();
     }
-    public void showEquippedItems(){
-        if(equippedItems[0] != null){
-            System.out.println("|" + myWeaponSlot + "|");
-        }else{
-            System.out.println("|     |");
-        }
-        if(equippedItems[1] != null){
-            System.out.println("|" + myShieldSlot + "|");
-        }else{
-            System.out.println("|     |");
-        }
-        if(equippedItems[2] != null){
-            System.out.println("|" + myHelmetSlot + "|");
-        }else{
-            System.out.println("|     |");
-        }
-        if(equippedItems[3] != null){
-            System.out.println("|" + myArmorSlot + "|");
-        }else{
-            System.out.println("|     |");
-        }
-        if(equippedItems[4] != null){
-            System.out.println("|" + myGlovesSlot + "|");
-        }else{
-            System.out.println("|     |");
-        }
-        if(equippedItems[5] != null){
-            System.out.println("|" + myBootsSlot + "|");
-        }else{
-            System.out.println("|     |");
-        }
-    }
+
     public void sellItem(String pItemName){
         for(int x=0; x<inventory.length; x++){
             for(int y=0; y<inventory[0].length; y++){
                 if(inventory[x][y] != null){
                     if(inventory[x][y].getName().equals(pItemName)){
+                        //kaputt
                         playerGold = playerGold + myItemSlot.getValue();
                         inventory[x][y] = null;
-                        System.out.println("Das Item " + pItemName + " wurde für " + myItemSlot.getValue() + " Gold verkauft.");
+                        System.out.println(AnsiColor.ANSI_RED + pItemName + AnsiColor.ANSI_RESET + " was sold for " + AnsiColor.ANSI_YELLOW + myItemSlot.getValue() + AnsiColor.ANSI_RESET + " gold.");
                     }
                 }
             }
         }
     }
+
     public void showItemStats(String pItemName){
         for(int x=0; x<inventory.length; x++){
             for(int y=0; y<inventory[0].length; y++){
                 if(inventory[x][y] != null){
                     if(inventory[x][y].getName().equals(pItemName)){
+                        //vermutlich auch kaputt
                         System.out.println("Item Type:" + myItemSlot.getItemType());
                         System.out.println("Item Name:" + myItemSlot.getName());
                         System.out.println("Rarity:" + myItemSlot.getRarity());
@@ -238,15 +209,6 @@ public class Player{
                 }
             }
         }
-    }
-
-    public void showStats(){
-        System.out.println("Max HP:" + playerMaxHP);
-        System.out.println("Final HP:" + playerFinalHP);
-        System.out.println("Current HP:" + playerCurrentHP);
-        System.out.println("Min DMG:" + minDMG);
-        System.out.println("Max DMG:" + maxDMG);
-        System.out.println("Armor:" + playerArmor);
     }
 
     public void equipWeapon(Weapon pWeapon){
